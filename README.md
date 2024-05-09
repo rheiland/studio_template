@@ -20,7 +20,7 @@ then run:
 python get_studio.py
 ```
 
-This should create a `studio` directory. Run the following:
+This should create a `studio` directory. Run the following (only necessary if you are using your computer's default Python and not the Anaconda distribution):
 ```
 cd studio
 pip install -r requirements.txt
