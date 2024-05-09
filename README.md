@@ -12,6 +12,9 @@ pip install requests
 Download this Python script into a directory where you want to run the Studio:
 [get_studio.py](get_studio.py)
 
+<img src="./images/download_icon.png" width="50%">
+
+
 then run:
 ```
 python get_studio.py
@@ -30,5 +33,10 @@ You should then be ready to run:
 ```
 python bin/studio.py
 ```
-to display the Studio GUI and run a simulation (`project` or `project.exe` executable in the Run tab).
+to display the Studio GUI:
+
+<img src="./images/config_basics.png" width="50%">
+
+and run a simulation (`project` or `project.exe` executable in the Run tab).
+<img src="./images/run_tab.png" width="50%">
 
