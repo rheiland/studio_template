@@ -1,6 +1,6 @@
 # studio_template
 
-This repository helps a modeler download PhysiCell Studio and an appropriate 
+This repository contains a version of PhysiCell Studio with an appropriate 
 executable model (`project`) for their computer (currently just Windows or Mac).
 We assume you have a Python installation on your computer (you should).
 
