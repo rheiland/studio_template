@@ -2,13 +2,9 @@
 
 This repository helps a modeler download PhysiCell Studio and an appropriate 
 executable model (`project`) for their computer (currently just Windows or Mac).
-
-We assume you have a Python installation. From a command line window (Terminal on Mac; 
-Powershell on Windows), run this command:
-
+We assume you have a Python installation on your computer (you should).
 
 Download the latest release of this repository and uncompress it which will create a `studio` directory.
-
 
 From a command line terminal, run the following (only necessary if you are using your computer's default Python and not the Anaconda distribution):
 ```
