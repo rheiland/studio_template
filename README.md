@@ -6,7 +6,7 @@ We assume you have a Python installation on your computer (you should).
 
 Download the latest release (.zip at https://github.com/rheiland/studio_template/releases) of this repository and uncompress it which will create a `studio` directory.
 
-From a command line terminal, run the following (only necessary if you are using your computer's default Python and not the Anaconda distribution):
+From a command line terminal, run the following:
 ```
 cd studio_template-0.1   # or whatever the release suffix is
 cd studio
