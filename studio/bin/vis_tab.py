@@ -226,10 +226,10 @@ class Vis(VisBase, QWidget):
             if self.plot_cells_svg:
                 self.plot_svg(self.current_frame)
             elif self.physiboss_vis_flag:
-                print("----- update_plots(): doing physiboss")
+                # print("----- update_plots(): doing physiboss")
                 self.plot_cell_physiboss(self.current_frame)
             else:
-                print("----- update_plots(): doing non-physiboss; just cell scalars")
+                # print("----- update_plots(): doing non-physiboss; just cell scalars")
                 self.plot_cell_scalar(self.current_frame)
 
         # show grid(s), but only if Cells or Substrates checked?
@@ -255,7 +255,7 @@ class Vis(VisBase, QWidget):
     #------------------------------
     # Depends on 2D/3D
     def create_figure(self):
-        print("\n--   vis_tab.py: --------- create_figure(): ------- creating figure, canvas, ax0")
+        # print("\n--   vis_tab.py: --------- create_figure(): ------- creating figure, canvas, ax0")
         if self.figure is not None:
             print("              self.figure is None, so return!")
             return
@@ -674,7 +674,7 @@ class Vis(VisBase, QWidget):
     
     
     def plot_cell_scalar(self, frame):
-        print("plot_cell_scalar(): -------")
+        # print("plot_cell_scalar(): -------")
         if self.disable_cell_scalar_cb:
             print("plot_cell_scalar(): disable_cell_scalar_cb is True; return")
             return
@@ -726,7 +726,7 @@ class Vis(VisBase, QWidget):
         else:
             vmin = cell_scalar.min()
             vmax = cell_scalar.max()
-            print("plot_cell_scalar(): vmin,vmax=",vmin,vmax)
+            # print("plot_cell_scalar(): vmin,vmax=",vmin,vmax)
             
         num_cells = len(cell_scalar)
         # print("  len(cell_scalar) = ",len(cell_scalar))
@@ -896,7 +896,7 @@ class Vis(VisBase, QWidget):
 
         fname = "output%08d_microenvironment0.mat" % frame
         full_fname = os.path.join(self.output_dir, fname)
-        print("\n    ==>>>>> plot_substrate(): full_fname=",full_fname)
+        # print("\n    ==>>>>> plot_substrate(): full_fname=",full_fname)
         if not Path(full_fname).is_file():
             print("ERROR: file not found",full_fname)
             return
@@ -927,7 +927,7 @@ class Vis(VisBase, QWidget):
 
         try:
             xgrid = M[0, :].reshape(self.numy, self.numx)
-            print("    self.numy, self.numx=",self.numy, self.numx)
+            # print("    self.numy, self.numx=",self.numy, self.numx)
             ygrid = M[1, :].reshape(self.numy, self.numx)
         except:
             # print("error: cannot reshape ",self.numy, self.numx," for array ",M.shape)
@@ -941,6 +941,15 @@ class Vis(VisBase, QWidget):
             return
         # print("zvals.min() = ",zvals.min())
         # print("zvals.max() = ",zvals.max())
+
+        if (self.substrate_grad):
+            try:
+                # print(zvals.shape, ygrid[:,0], xgrid[0,:])
+                grad_x, grad_y = np.gradient(zvals, ygrid[:,0], xgrid[0,:])
+                zvals = np.sqrt(grad_x**2 + grad_y**2)
+                # print(zvals.min(),zvals.max())
+            except:
+                print("vis_tab.py: unable to compute the substrate gradient.")
 
 
         contour_ok = True
@@ -984,17 +993,24 @@ class Vis(VisBase, QWidget):
         #     self.ax0.contour(xgrid, ygrid, M[self.field_index, :].reshape(self.numy,self.numx), [0.0], linewidths=0.5)
 
         try:
-            print("plot_substrate(): creating self.cbar1 for self.substrate_plot and self.cax1")
+            # print("plot_substrate(): creating self.cbar1 for self.substrate_plot and self.cax1")
             self.cax1 = self.figure.add_subplot(self.gs[1])
             self.cbar1 = self.figure.colorbar(self.substrate_plot, cax=self.cax1)
             self.cbar1.ax.tick_params(labelsize=self.fontsize)
             # self.cbar1.ax.set_ylabel("foobar", fontsize=self.fontsize)
-            self.cbar1.ax.set_ylabel(self.substrate_name, fontsize=self.cbar_label_fontsize)
+            # self.cbar1.ax.set_ylabel(self.substrate_name, fontsize=self.cbar_label_fontsize)
 
             self.cax1.get_xaxis().set_visible(True)  # rwh: doesn't work
             self.cax1.get_yaxis().set_visible(True)
         except:
             print("plot_substrate(): except: No contour levels were found within the data range.")
+
+        if (self.substrate_grad):
+            # self.cbar1.set_label(self.substrate_name + " (gradient norm)", fontsize=self.cbar_label_fontsize)
+            self.cbar1.ax.set_ylabel(self.substrate_name + " (gradient norm)", fontsize=self.cbar_label_fontsize)
+        else:
+            # self.cbar1.set_label(self.substrate_name, fontsize=self.cbar_label_fontsize)
+            self.cbar1.ax.set_ylabel(self.substrate_name, fontsize=self.cbar_label_fontsize)
 
         self.ax0.set_title(self.title_str, fontsize=self.title_fontsize)
         try:

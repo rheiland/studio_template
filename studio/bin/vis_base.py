@@ -523,6 +523,7 @@ class VisBase():
         # self.plot_svg_flag = False
         self.field_index = 4  # substrate (0th -> 4 in the .mat)
         self.substrate_name = None
+        self.substrate_grad = False
 
         self.plot_xmin = None
         self.plot_xmax = None
@@ -882,6 +883,7 @@ class VisBase():
         #------------------
         self.vbox.addWidget(QHLine())
 
+        hbox = QHBoxLayout()
         self.substrates_checkbox = QCheckBox_custom('substrates')
         self.substrates_checkbox.setChecked(False)
         self.substrates_checkbox.clicked.connect(self.substrates_toggle_cb)
@@ -890,7 +892,15 @@ class VisBase():
         # self.substrates_checked_flag = True   # rwh: testing
         # self.substrates_checkbox.setChecked(True)
 
-        self.vbox.addWidget(self.substrates_checkbox)
+        self.substrates_grad_checkbox = QCheckBox_custom('norm of gradient')
+        self.substrates_grad_checkbox.setEnabled(False)
+        self.substrates_grad_checkbox.setChecked(False)
+        self.substrates_grad_checkbox.clicked.connect(self.substrates_grad_toggle_cb)
+
+        hbox.addWidget(self.substrates_checkbox)
+        hbox.addWidget(self.substrates_grad_checkbox)
+        self.vbox.addLayout(hbox)
+
 
         hbox = QHBoxLayout()
         self.substrates_combobox.setFixedWidth(120)
@@ -2476,6 +2486,7 @@ class VisBase():
             self.cmax.setStyleSheet("background-color: lightgray;")
         self.substrates_combobox.setEnabled(bval)
         self.substrates_cbar_combobox.setEnabled(bval)
+        self.substrates_grad_checkbox.setEnabled(bval)
 
         # if self.view_shading:
         #     self.view_shading.setEnabled(bval)
@@ -2497,6 +2508,9 @@ class VisBase():
         # print("\n>>> calling update_plots() from "+ inspect.stack()[0][3])
         self.update_plots()
 
+    def substrates_grad_toggle_cb(self,bval):
+        self.substrate_grad = bval
+        self.update_plots()
 
     def fix_cells_cmap_toggle_cb(self,bval):
         # print("fix_cells_cmap_toggle_cb():")
