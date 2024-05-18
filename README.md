@@ -27,19 +27,19 @@ and run a simulation (`project` or `project.exe` executable in the Run tab).
 ---
 ## Installing and running from Windows Powershell
 
-After downloading the latest release (.zip). Assumes you are in your home folder:
+After downloading the latest release (.zip), follow the usual Windows steps to "extract" the files, or if you have the "unzip" command in Powershell, you could use it as shown here:
 ```
-PS C:\Users\heiland> mv C:\Users\heiland\Downloads\studio_template-0.1.zip .
-PS C:\Users\heiland> unzip .\studio_template-0.1.zip
-PS C:\Users\heiland> cd .\studio_template-0.1\studio\
-PS C:\Users\heiland\studio_template-0.1\studio> pip3 install -r .\requirements.txt
-PS C:\Users\heiland\studio_template-0.1\studio> python3 .\bin\studio.py
+PS C:\Users\heiland> mv C:\Users\heiland\Downloads\studio_template-0.2.zip .
+PS C:\Users\heiland> unzip .\studio_template-0.2.zip
+PS C:\Users\heiland> cd .\studio_template-0.2\studio\
+PS C:\Users\heiland\studio_template-0.2\studio> pip3 install -r .\requirements.txt
+PS C:\Users\heiland\studio_template-0.2\studio> python3 .\bin\studio.py
 ```
 <img src="./images/Windows-studio-config-tab.png" width="50%">
 <img src="./images/Windows-studio-run-tab.png" width="50%">
 
 
-Details of the Windows installation:
+Details of the Windows installation (for an earlier release):
 ```
 Windows PowerShell
 Copyright (C) Microsoft Corporation. All rights reserved.
