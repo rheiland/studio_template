@@ -8,7 +8,7 @@ Download the latest release (.zip at https://github.com/rheiland/studio_template
 
 From a command line terminal, run the following:
 ```
-cd studio_template-0.1   # or whatever the release suffix is
+cd studio_template-0.2   # or whatever the release suffix is
 cd studio
 pip3 install -r requirements.txt
 ```
