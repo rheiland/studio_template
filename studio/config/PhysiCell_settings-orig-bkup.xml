@@ -14,7 +14,7 @@
     </domain>
 
     <overall>
-        <max_time units="min">73</max_time>
+        <max_time units="min">7200</max_time>
         <time_units>min</time_units>
         <space_units>micron</space_units>
         <dt_diffusion units="min">0.01</dt_diffusion>
@@ -23,7 +23,7 @@
     </overall>
 
     <parallel>
-        <omp_num_threads>6</omp_num_threads>
+        <omp_num_threads>4</omp_num_threads>
     </parallel>
 
     <save>
@@ -35,6 +35,11 @@
         <SVG>
             <interval units="min">60</interval>
             <enable>true</enable>
+            <plot_substrate enabled="false" limits="false">
+                <substrate>substrate</substrate>
+                <min_conc />
+                <max_conc />
+            </plot_substrate>
         </SVG>
         <legacy_data>
             <enable>false</enable>
@@ -140,8 +145,6 @@
                         <set_relative_equilibrium_distance enabled="false" units="dimensionless">1.8</set_relative_equilibrium_distance>
                         <set_absolute_equilibrium_distance enabled="false" units="micron">15.12</set_absolute_equilibrium_distance>
                     </options>
-                    <cell_BM_adhesion_strength units="micron/min">4.0</cell_BM_adhesion_strength>
-                    <cell_BM_repulsion_strength units="micron/min">10.0</cell_BM_repulsion_strength>
                     <attachment_elastic_constant units="1/min">0.01</attachment_elastic_constant>
                     <attachment_rate units="1/min">0.0</attachment_rate>
                     <detachment_rate units="1/min">0.0</detachment_rate>
@@ -195,7 +198,7 @@
                 </cell_transformations>
             </phenotype>
             <custom_data>
-                <sample conserved="false" units="dimensionless" description="">1.42</sample>
+                <sample conserved="false" units="dimensionless" description="">1.0</sample>
             </custom_data>
         </cell_definition>
     </cell_definitions>
@@ -209,9 +212,9 @@
 
     <cell_rules>
         <rulesets>
-            <ruleset protocol="CBHG" version="2.0" format="csv" enabled="true">
+            <ruleset protocol="CBHG" version="2.0" format="csv" enabled="false">
                 <folder>./config</folder>
-                <filename>cell_rules_v2.csv</filename>
+                <filename>rules0.csv</filename>
             </ruleset>
         </rulesets>
         <settings />
@@ -219,6 +222,6 @@
 
     <user_parameters>
         <random_seed type="int" units="dimensionless" description="">0</random_seed>
-        <number_of_cells type="int" units="none" description="initial number of cells (for each cell type)">20</number_of_cells>
+        <number_of_cells type="int" units="none" description="initial number of cells (for each cell type)">5</number_of_cells>
     </user_parameters>
 </PhysiCell_settings>
