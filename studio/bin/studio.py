@@ -943,14 +943,15 @@ PhysiCell Studio is provided "AS IS" without warranty of any kind. &nbsp; In no 
 
     #---------------------------------
     def load_user_proj_cb(self):
-        if not os.path.isfile(os.path.join(self.current_dir, "main.cpp")):
-            msgBox = QMessageBox()
-            msgBox.setIcon(QMessageBox.Information)
-            msgBox.setText("Warning: You do not seem to be in a PhysiCell root directory. Continue?")
-            msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
-            returnValue = msgBox.exec()
-            if returnValue == QMessageBox.Cancel:
-                return
+        #----- rwh: comment out test for studio_template repo!
+        # if not os.path.isfile(os.path.join(self.current_dir, "main.cpp")):
+        #     msgBox = QMessageBox()
+        #     msgBox.setIcon(QMessageBox.Information)
+        #     msgBox.setText("Warning: You do not seem to be in a PhysiCell root directory. Continue?")
+        #     msgBox.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        #     returnValue = msgBox.exec()
+        #     if returnValue == QMessageBox.Cancel:
+        #         return
 
         try:
             dialog = QFileDialog(self)
