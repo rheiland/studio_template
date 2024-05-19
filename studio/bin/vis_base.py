@@ -572,14 +572,14 @@ class VisBase():
         self.figsize_width_substrate = 15.0  # allow extra for colormap(s)
         self.figsize_height_substrate = basic_length
 
-        self.cax1 = None   #rwh
+        self.cax1 = None
         self.cax2 = None
 
-        # self.figsize_width_2Dplot = basic_length
-        # self.figsize_height_2Dplot = basic_length
+        self.figsize_width_2Dplot = basic_length
+        self.figsize_height_2Dplot = basic_length
 
-        # self.figsize_width_svg = basic_length
-        # self.figsize_height_svg = basic_length
+        self.figsize_width_svg = basic_length
+        self.figsize_height_svg = basic_length
 
         # stop the insanity!
         self.output_dir = "."   # for nanoHUB  (overwritten in studio.py, based on config_tab)
@@ -888,9 +888,7 @@ class VisBase():
         self.substrates_checkbox.setChecked(False)
         self.substrates_checkbox.clicked.connect(self.substrates_toggle_cb)
         self.substrates_checked_flag = False
-        # rwh: temporary while debugging cbars
-        # self.substrates_checked_flag = True   # rwh: testing
-        # self.substrates_checkbox.setChecked(True)
+        self.vbox.addWidget(self.substrates_checkbox)
 
         self.substrates_grad_checkbox = QCheckBox_custom('norm of gradient')
         self.substrates_grad_checkbox.setEnabled(False)
@@ -908,7 +906,6 @@ class VisBase():
         hbox.addWidget(self.substrates_combobox)
         hbox.addWidget(self.substrates_cbar_combobox)
         hbox.addItem(self.hz_stretch_item_3)
-
         self.vbox.addLayout(hbox)
 
         #------
@@ -1734,22 +1731,12 @@ class VisBase():
         self.cells_cmax.setStyleSheet("background-color: lightgray;")
         # self.fix_cmap_checkbox.setEnabled(bval)
 
-        # if self.cax2:
-        #     try:   # otherwise, physiboss UI can crash
-        #         self.cax2.remove()
-        #     except:
-        #         pass
-        #     self.cax2 = None
-
-        # try:   # otherwise, physiboss UI can crash
-        #     self.cax2.clear()
-        # except:
-        #     print("vis_base.py: except cax2.clear  #2")
-        #     pass
         if self.cax2:
-            self.cax2.remove()
+            try:   # otherwise, physiboss UI can crash
+                self.cax2.remove()
+            except:
+                pass
             self.cax2 = None
-
 
     def cells_svg_mat_cb(self):
         # print("\n---------cells_svg_mat_cb(self)")
@@ -2067,7 +2054,7 @@ class VisBase():
 
 
     def reset_model(self):
-        print("--------- vis_base: reset_model ----------")
+        # print("--------- vis_base: reset_model ----------")
         self.cell_scalars_filled = False
 
         # Verify initial.xml and at least one .svg file exist. Obtain bounds from initial.xml
@@ -2126,7 +2113,7 @@ class VisBase():
         # print('reset_model(): len(ycoords)=',len(ycoords))
         self.numy =  len(ycoords)
         # print("-------------- vis_tab.py: reset_model() -------------------")
-        print("reset_model(): self.numx, numy = ",self.numx,self.numy)
+        # print("reset_model(): self.numx, numy = ",self.numx,self.numy)
 
         self.reset_domain_box()
 
@@ -2211,6 +2198,9 @@ class VisBase():
         # print("\n>>> calling update_plots() from "+ inspect.stack()[0][3])
         self.update_plots()
 
+    def last_svg_plot(self):
+        pass
+
     def last_plot_cb(self, text):
         if self.reset_model_flag:
             self.reset_model()
@@ -2229,11 +2219,12 @@ class VisBase():
         num_xml = len(xml_files)
         if num_xml == 0:
             print("last_plot_cb(): WARNING: no output*.xml files present")
-            return
-
-        xml_files.sort()
-        # print('last_plot_cb():xml_files (after sort)= ',xml_files)
-        last_xml = int(xml_files[-1][-12:-4])
+            last_xml = None
+            # return
+        else:
+            xml_files.sort()
+            # print('last_plot_cb():xml_files (after sort)= ',xml_files)
+            last_xml = int(xml_files[-1][-12:-4])
 
         # svg_pattern = "snapshot*.svg"
 
@@ -2257,10 +2248,12 @@ class VisBase():
             # print('num_xml, num_svg = ',num_xml, num_svg)
             # last_xml = int(xml_files[-1][-12:-4])
             last_svg = int(svg_files[-1][-12:-4])
-            # print('last_xml, _svg = ',last_xml,last_svg)
-            self.current_svg_frame = last_xml
-            if last_svg < last_xml:
-                self.current_svg_frame = last_svg
+            self.current_svg_frame = last_svg
+            print('last_xml, _svg = ',last_xml,last_svg)
+            if last_xml:
+                self.current_svg_frame = last_xml
+                if last_svg < last_xml:
+                    self.current_svg_frame = last_svg
 
             self.current_frame = self.current_svg_frame
 
@@ -2452,17 +2445,12 @@ class VisBase():
 
         if not self.cells_checked_flag:
             self.cell_scalar_combobox.setEnabled(False)
-            # if self.cax2:
-            #     try:
-            #         self.cax2.remove()
-            #         self.cax2 = None
-            #     except:
-            #         pass
-            # try:
-            #     self.cax2.clear()
-            # except:
-            #     print("vis_base.py: except cax2.clear()  #1")
-            #     pass
+            if self.cax2:
+                try:
+                    self.cax2.remove()
+                    self.cax2 = None
+                except:
+                    pass
             
         # print("\n>>> calling update_plots() from "+ inspect.stack()[0][3])
         self.update_plots()
@@ -2491,17 +2479,10 @@ class VisBase():
         # if self.view_shading:
         #     self.view_shading.setEnabled(bval)
 
-        # if not self.substrates_checked_flag:
-            # if self.cax1:
-            #     self.cax1.remove()
-            #     self.cax1 = None
-            # try:
-            #     print("vis_base.py: (before clear) self.cax1 = ",self.cax1)
-            #     self.cax1.clear()
-            #     print("     (after clear)  self.cax1 = ",self.cax1)
-            # except:
-            #     print("vis_base.py: except cax1.clear()")
-            #     pass
+        if not self.substrates_checked_flag:
+            if self.cax1:
+                self.cax1.remove()
+                self.cax1 = None
 
         if not self.plot_xmin:
             self.reset_plot_range()
