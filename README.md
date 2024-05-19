@@ -8,7 +8,7 @@ Download the latest release (.zip at https://github.com/rheiland/studio_template
 
 From a command line terminal, run the following:
 ```
-cd studio_template-0.2   # or whatever the release suffix is
+cd studio_template-0.3   # or whatever the release suffix is
 cd studio
 pip3 install -r requirements.txt
 ```
@@ -29,11 +29,11 @@ and run a simulation (`project` or `project.exe` executable in the Run tab).
 
 After downloading the latest release (.zip), follow the usual Windows steps to "extract" the files, or if you have the "unzip" command in Powershell, you could use it as shown here:
 ```
-PS C:\Users\heiland> mv C:\Users\heiland\Downloads\studio_template-0.2.zip .
-PS C:\Users\heiland> unzip .\studio_template-0.2.zip
-PS C:\Users\heiland> cd .\studio_template-0.2\studio\
-PS C:\Users\heiland\studio_template-0.2\studio> pip3 install -r .\requirements.txt
-PS C:\Users\heiland\studio_template-0.2\studio> python3 .\bin\studio.py
+PS C:\Users\heiland> mv C:\Users\heiland\Downloads\studio_template-0.3.zip .
+PS C:\Users\heiland> unzip .\studio_template-0.3.zip
+PS C:\Users\heiland> cd .\studio_template-0.3\studio\
+PS C:\Users\heiland\studio_template-0.3\studio> pip3 install -r .\requirements.txt
+PS C:\Users\heiland\studio_template-0.3\studio> python3 .\bin\studio.py
 ```
 <img src="./images/Windows-studio-config-tab.png" width="50%">
 <img src="./images/Windows-studio-run-tab.png" width="50%">
