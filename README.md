@@ -52,6 +52,11 @@ and run a simulation (`project` or `project.exe` executable in the Run tab).
 <img src="./images/run_tab.png" width="50%">
 
 ---
+## Recovering the original template model
+
+Making changes to the template model in the Studio will update the `config/PhysiCell_settings.xml` file. If you ever want to recover the original model, you can `File -> Load user project`, select the `user_projects` `studio_template`, and then `File -> Open` the `config/PhysiCell_settings.xml`.
+
+---
 ## Installing and running from Windows Powershell
 
 After downloading the latest release (.zip), follow the usual Windows steps to "extract" the files, or if you have the "unzip" command in Powershell, you could use it as shown here:
@@ -65,7 +70,7 @@ PS C:\Users\heiland\studio_template-0.3\studio> python3 .\bin\studio.py
 <img src="./images/Windows-studio-config-tab.png" width="50%">
 <img src="./images/Windows-studio-run-tab.png" width="50%">
 
-
+---
 Details of the Windows installation (for an earlier release):
 ```
 Windows PowerShell
