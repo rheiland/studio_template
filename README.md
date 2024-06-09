@@ -2,7 +2,34 @@
 
 This repository contains a version of PhysiCell Studio with an appropriate 
 executable model (`project`) for their computer (currently just Windows or Mac).
-We assume you have a Python installation on your computer (you should).
+You need Python 3 installed on your computer (which will include the `pip3` command used below). Verify that you do and if not, install it:
+
+## Step 1) Install Python (if you don't have it)
+
+### On Windows:
+Follow these steps or see the Anaconda option below.
+```
+* open a Command Line or Powershell terminal and type "python"
+If it comes back with "Python 3.xx.xx" then you should be good.
+You can type "quit()" at the Python prompt (">>>") to exit the interpreter.
+```
+
+Otherwise, if it says "command not found", then download and install Python 3.11 from the [Microsoft Store](https://apps.microsoft.com/search?query=python&hl=en-us&gl=US).
+
+### On a Mac:
+Follow these steps or see the Anaconda option (next).
+```
+* open a Terminal shell and type "python"
+If it comes back with "Python 3.xx.xx" then you should be good.
+You can type "quit()" at the Python prompt (">>>") to exit the interpreter.
+```
+Otherwise, if it says "command not found", then download and install the latest "macOS 64-bit universal2 installer" from [www.python.org/downloads/macos/](https://www.python.org/downloads/macos/).
+
+### Platform independent: install the Anaconda Python
+* https://www.anaconda.com/download (note there's a "Skip registration" option) - this option will figure out what operating system you are running and download the appropriate Python package. It will be somewhat large, but will contain most of the dependencies for the Studio.
+
+---
+## Step 2) Get the bundled Studio (this repo)
 
 Download the latest release (.zip at https://github.com/rheiland/studio_template/releases) of this repository and uncompress it which will create a `studio` directory.
 
@@ -15,7 +42,7 @@ pip3 install -r requirements.txt
 
 You should then be ready to run:
 ```
-python bin/studio.py
+python3 bin/studio.py
 ```
 to display the Studio GUI:
 
@@ -23,6 +50,11 @@ to display the Studio GUI:
 
 and run a simulation (`project` or `project.exe` executable in the Run tab).
 <img src="./images/run_tab.png" width="50%">
+
+---
+## Recovering the original template model
+
+Making changes to the template model in the Studio will update the `config/PhysiCell_settings.xml` file. If you ever want to recover the original model, you can `File -> Load user project`, select the `user_projects` `studio_template`, and then `File -> Open` the `config/PhysiCell_settings.xml`.
 
 ---
 ## Installing and running from Windows Powershell
@@ -38,7 +70,7 @@ PS C:\Users\heiland\studio_template-0.3\studio> python3 .\bin\studio.py
 <img src="./images/Windows-studio-config-tab.png" width="50%">
 <img src="./images/Windows-studio-run-tab.png" width="50%">
 
-
+---
 Details of the Windows installation (for an earlier release):
 ```
 Windows PowerShell
