@@ -52,6 +52,25 @@ and run a simulation (`project` or `project.exe` executable in the Run tab).
 <img src="./images/run_tab.png" width="50%">
 
 ---
+## MacOS security issue for the project executable
+
+If you are on a Mac, you will most likely encounter a security issue when you try to run the `project` executable (either from the Studio's Run tab or just from the command line in the Terminal (with the command `./project`):
+
+<img src="./images/project_cannot_be_opened.png" width="20%">
+
+You need to `Cancel` to close that warning then open a Finder window. From the Terminal window, in the "studio" directory of this repo, just type `open .` ("open" command, followed by a space and a "period"):
+```
+~/studio_template-0.3/studio$ open .
+```
+This will open a Finder window containing the files in this directory. You want to "control-select" (hold down the "control" key and use your mouse or trackpad to select) the `project` file:
+
+<img src="./images/mac_security_open_project.png" width="30%">
+
+Then select the `Open` option. You will see another popup warning dialog about "macOS cannot verify...", but click its `Open` button. This will allow you to run the `project` file from then on. 
+
+<img src="./images/mac-cannot-verify-open-anyway.png" width="20%">
+
+---
 ## Recovering the original template model
 
 Making changes to the template model in the Studio will update the `config/PhysiCell_settings.xml` file. If you ever want to recover the original model, you can `File -> Load user project`, select the `user_projects` `studio_template`, and then `File -> Open` the `config/PhysiCell_settings.xml`.
