@@ -48,7 +48,7 @@ to display the Studio GUI:
 
 <img src="./images/config_basics.png" width="50%">
 
-and run a simulation (`project` or `project.exe` executable in the Run tab).
+and run a simulation ( `project.exe` or `project_mac_arm64` or `project` executable in the Run tab).
 <img src="./images/run_tab.png" width="50%">
 
 ---
