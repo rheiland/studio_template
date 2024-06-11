@@ -35,7 +35,7 @@ Download the latest release (.zip at https://github.com/rheiland/studio_template
 
 From a command line terminal, run the following:
 ```
-cd studio_template-0.3   # or whatever the release suffix is
+cd studio_template-0.4   # or whatever the release suffix is
 cd studio
 pip3 install -r requirements.txt
 ```
@@ -48,7 +48,7 @@ to display the Studio GUI:
 
 <img src="./images/config_basics.png" width="50%">
 
-and run a simulation (`project` or `project.exe` executable in the Run tab).
+and run a simulation ( `project.exe` or `project_mac_arm64` or `project` executable in the Run tab).
 <img src="./images/run_tab.png" width="50%">
 
 ---
@@ -60,7 +60,7 @@ If you are on a Mac, you will most likely encounter a security issue when you tr
 
 You need to `Cancel` to close that warning then open a Finder window. From the Terminal window, in the "studio" directory of this repo, just type `open .` ("open" command, followed by a space and a "period"):
 ```
-~/studio_template-0.3/studio$ open .
+~/studio_template-0.4/studio$ open .
 ```
 This will open a Finder window containing the files in this directory. You want to "control-select" (hold down the "control" key and use your mouse or trackpad to select) the `project` file:
 
@@ -80,11 +80,11 @@ Making changes to the template model in the Studio will update the `config/Physi
 
 After downloading the latest release (.zip), follow the usual Windows steps to "extract" the files, or if you have the "unzip" command in Powershell, you could use it as shown here:
 ```
-PS C:\Users\heiland> mv C:\Users\heiland\Downloads\studio_template-0.3.zip .
-PS C:\Users\heiland> unzip .\studio_template-0.3.zip
-PS C:\Users\heiland> cd .\studio_template-0.3\studio\
-PS C:\Users\heiland\studio_template-0.3\studio> pip3 install -r .\requirements.txt
-PS C:\Users\heiland\studio_template-0.3\studio> python3 .\bin\studio.py
+PS C:\Users\heiland> mv C:\Users\heiland\Downloads\studio_template-0.4.zip .
+PS C:\Users\heiland> unzip .\studio_template-0.4.zip
+PS C:\Users\heiland> cd .\studio_template-0.4\studio\
+PS C:\Users\heiland\studio_template-0.4\studio> pip3 install -r .\requirements.txt
+PS C:\Users\heiland\studio_template-0.4\studio> python3 .\bin\studio.py
 ```
 <img src="./images/Windows-studio-config-tab.png" width="50%">
 <img src="./images/Windows-studio-run-tab.png" width="50%">
