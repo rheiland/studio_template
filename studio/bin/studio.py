@@ -1374,10 +1374,18 @@ def main():
         parser.add_argument("--bioinf_import", help="display bioinformatics import tab on ICs tab", action="store_true")
         parser.add_argument("--bioinf_import_test", help="immediately start loading anndata w/o spatial", action="store_true")
         parser.add_argument("--bioinf_import_test_spatial", help="immediately start loading spatial anndata", action="store_true")
-        if platform.system() == "Windows":
+
+        os_type = platform.system()
+        if os_type == "Windows":
             exec_file = 'project.exe'
+        elif os_type.lower() == 'darwin':
+            if "ARM64" in platform.uname().version:
+                exec_file = 'project_mac_arm64'  # for template sample
+            else:
+                exec_file = 'project'  # for template sample
         else:
-            exec_file = 'project'  # for template sample
+            print("\n\n------------\n  You seem to be on Linux. Copy your project binary to here.\n\n")
+            exec_file = 'project'  # if Linux, copy/overwrite its "project" with the one here
 
         # args = parser.parse_args()
         args, unknown = parser.parse_known_args()
